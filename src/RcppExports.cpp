@@ -5,20 +5,24 @@
 
 using namespace Rcpp;
 
-// timesTwo
-NumericVector timesTwo(NumericVector x);
-RcppExport SEXP GeneticDiff_timesTwo(SEXP xSEXP) {
+// rgt
+Rcpp::CharacterMatrix rgt(int nsamp, int nvar, int pphased, Rcpp::IntegerVector pploid, Rcpp::IntegerVector pallele);
+RcppExport SEXP GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(timesTwo(x));
+    Rcpp::traits::input_parameter< int >::type nsamp(nsampSEXP);
+    Rcpp::traits::input_parameter< int >::type nvar(nvarSEXP);
+    Rcpp::traits::input_parameter< int >::type pphased(pphasedSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type pploid(pploidSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type pallele(palleleSEXP);
+    rcpp_result_gen = Rcpp::wrap(rgt(nsamp, nvar, pphased, pploid, pallele));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"GeneticDiff_timesTwo", (DL_FUNC) &GeneticDiff_timesTwo, 1},
+    {"GeneticDiff_rgt", (DL_FUNC) &GeneticDiff_rgt, 5},
     {NULL, NULL, 0}
 };
 
