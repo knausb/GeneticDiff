@@ -4,24 +4,76 @@
 //using namespace Rcpp;
 
 
-std::string simGT(int pphased,
-                  Rcpp::IntegerVector pploid,
-                  Rcpp::IntegerVector pallele
+std::string simGT(Rcpp::NumericVector pphased,
+                  Rcpp::NumericVector pploid,
+                  Rcpp::NumericVector pallele
 ){
+  int i = 0;
+  int j = 0;
+  int ploid = 0;
   
   // Determine phasing
   std::string delim = "/";
-//  unsigned seed = 1;
-//  srand(seed);
-//  int myRand = rand() % 100;
-//  Rcpp::Rcout << myRand << "\n";
+  Rcpp::NumericVector myRand = Rcpp::runif(1);
+  if(myRand(0) < pphased(0)){
+    delim = "|";
+  }
   
-//  if(myRand < pphased){
-//    delim = "|";
-//  }
+  // Convert ploidy probabilities to thresholds
+  for(i=1; i<pploid.size(); i++){
+    pploid(i) = pploid(i-1) + pploid(i);
+  }
+  
+  // Determine ploid
+  for(i=0; i<pploid.size(); i++){
+    if(myRand(0) < pploid(i)){
+      ploid = i;
+    }
+  }
 
-
-  return("0/1");
+  Rcpp::Rcout << "Locus has " << ploid + 1 << " copies\n";
+  
+  // Create vector of alleles
+  Rcpp::IntegerVector myAlleles(ploid + 1);
+  
+  // Convert allele probabilities to thresholds
+  for(i=1; i<pallele.size(); i++){
+    pallele(i) = pallele(i-1) + pallele(i);
+  }
+  
+  Rcpp::Rcout << "Allelic thresholds " << pallele(0);
+  for(i=1; i<pallele.size(); i++){
+    Rcpp::Rcout << ", " << i;
+  }
+  Rcpp::Rcout << "\n";
+  
+  // Assign allelic state
+  Rcpp::Rcout << "Random number is: " << myRand(0) << "\n";
+  for(i=0; i<=ploid; i++){
+    // Allele copy i
+    Rcpp::Rcout << "  Allele copy " << i << "\n";
+    for(j=0; j<pallele.size(); j++){
+      // Determine state of allele i
+      Rcpp::Rcout << "    Allelic state " << j << "\n";
+      if( myRand(0) > pallele(j) ){
+        myAlleles(i) = j;
+        Rcpp::Rcout << "      Changed allele" << "\n";
+      }
+    }
+    Rcpp::Rcout << "    Allele called is " << myAlleles(i) << "\n";
+  }
+  Rcpp::Rcout << "\n";
+  
+  // Concatenate alleles into a string
+  std::stringstream sstm;
+  sstm << myAlleles(0);
+  for(i=1; i<myAlleles.size(); i++){
+    sstm << delim << myAlleles(i);
+  }
+  
+  std::string myGT = sstm.str();
+//  std::string myGT = "0/1";
+  return(myGT);
 }
 
 
@@ -42,7 +94,7 @@ std::string simGT(int pphased,
 //' Generate a matrix of random genotypes.
 //' 
 //' @examples
-//' rgt()
+// ' rgt()
 //' 
 //'
 //' @export
@@ -50,9 +102,9 @@ std::string simGT(int pphased,
 Rcpp::CharacterMatrix rgt(
     int nsamp = 4,
     int nvar = 3,
-    int pphased = 50,
-    Rcpp::IntegerVector pploid = Rcpp::IntegerVector::create(0,100),
-    Rcpp::IntegerVector pallele = Rcpp::IntegerVector::create(50,50)
+    Rcpp::NumericVector pphased = Rcpp::NumericVector::create(0.5),
+    Rcpp::NumericVector pploid = Rcpp::NumericVector::create(0,1),
+    Rcpp::NumericVector pallele = Rcpp::NumericVector::create(0.5,0.5)
 ){
   // Initialize return matrix.
   Rcpp::CharacterMatrix gtMat(nvar, nsamp);
@@ -62,23 +114,23 @@ Rcpp::CharacterMatrix rgt(
   int i = 0;
   int j = 0;
   
-  // Check pploid sum < 100.
+  // Check pploid sum < 1.
   int mySum = 0;
   for(i=0; i<pploid.size(); i++){
     mySum = mySum + pploid(i);
   }
-  if(mySum > 100){
-    Rcpp::Rcerr << "pploid sum is greater than 100\n";
+  if(mySum > 1){
+    Rcpp::Rcerr << "pploid sum is greater than 1\n";
     return( Rcpp::CharacterMatrix(1) );
   }
   
-  // Check pallele sum < 100.
+  // Check pallele sum < 1.
   mySum = 0;
   for(i=0; i<pallele.size(); i++){
     mySum = mySum + pallele(i);
   }
-  if(mySum > 100){
-    Rcpp::Rcerr << "pallele sum is greater than 100\n";
+  if(mySum > 1){
+    Rcpp::Rcerr << "pallele sum is greater than 1\n";
     return( Rcpp::CharacterMatrix(1) );
   }
   

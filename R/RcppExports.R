@@ -17,11 +17,12 @@
 #' Generate a matrix of random genotypes.
 #' 
 #' @examples
-#' rgt()
+NULL
+
 #' 
 #'
 #' @export
-rgt <- function(nsamp = 4L, nvar = 3L, pphased = 50L, pploid = as.integer( c(0,100)), pallele = as.integer( c(50,50))) {
+rgt <- function(nsamp = 4L, nvar = 3L, pphased = as.numeric( c(0.5)), pploid = as.numeric( c(0,1)), pallele = as.numeric( c(0.5,0.5))) {
     .Call('GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele)
 }
 

@@ -2,4 +2,4 @@
 
 export(rgt)
 importFrom(Rcpp,sourceCpp)
-useDynLib(GeneticDiff)
+useDynLib(GeneticDiff, .registration = TRUE)
