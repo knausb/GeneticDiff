@@ -120,21 +120,25 @@ std::string simGT(Rcpp::NumericVector pphased,
 
 
 //'
-//' @title rgt
+//' @title rgt - random genotypes
 //' @description
 //' Generate a matrix of random genotypes.
 //' @name rgt
 //' 
-//' @param nsamp number of samples to simulate
-//' @param nvar number of variants to simulate
+//' @param nsamp number of samples (columns) to simulate
+//' @param nvar number of variants (rows) to simulate
 //' @param pphased probability each genotype will be phased
 //' @param pploid probability each genotype will be a ploidy level
 //' @param pallele probability of each allele
 //' 
 //' 
 //' @details
-//' Generate a matrix of random genotypes.
+//' The function \code{rgt} generates a matrix of random genotypes.
+//' The parameter `nsamp` determines the number of samples (columns) to simulate.
+//' The parameter `nvar` determines the number of variants (rows) to simulate.
 //' 
+//' @return
+//' A matrix with samples in columns and variants in rows.
 //' 
 //'
 //' @export

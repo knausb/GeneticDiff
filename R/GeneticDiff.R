@@ -11,6 +11,7 @@
 #' Functionality is included to simulate data, measure within population diversity and among population differentiation.
 #' 
 #'
+#'
 #' @useDynLib GeneticDiff
 #' @importFrom Rcpp sourceCpp
 NULL

@@ -2,15 +2,15 @@
 % Please edit documentation in R/RcppExports.R
 \name{rgt}
 \alias{rgt}
-\title{rgt}
+\title{rgt - random genotypes}
 \usage{
 rgt(nsamp = 4L, nvar = 3L, pphased = as.numeric(c(0.5)),
   pploid = as.numeric(c(0, 1)), pallele = as.numeric(c(0.5, 0.5)))
 }
 \arguments{
-\item{nsamp}{number of samples to simulate}
+\item{nsamp}{number of samples (columns) to simulate}
 
-\item{nvar}{number of variants to simulate}
+\item{nvar}{number of variants (rows) to simulate}
 
 \item{pphased}{probability each genotype will be phased}
 
@@ -18,9 +18,14 @@ rgt(nsamp = 4L, nvar = 3L, pphased = as.numeric(c(0.5)),
 
 \item{pallele}{probability of each allele}
 }
+\value{
+A matrix with samples in columns and variants in rows.
+}
 \description{
 Generate a matrix of random genotypes.
 }
 \details{
-Generate a matrix of random genotypes.
+The function \code{rgt} generates a matrix of random genotypes.
+The parameter `nsamp` determines the number of samples (columns) to simulate.
+The parameter `nvar` determines the number of variants (rows) to simulate.
 }
