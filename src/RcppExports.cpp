@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rgt
 Rcpp::CharacterMatrix rgt(int nsamp, int nvar, Rcpp::NumericVector pphased, Rcpp::NumericVector pploid, Rcpp::NumericVector pallele);
-RcppExport SEXP GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP) {
+RcppExport SEXP _GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -19,4 +19,14 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(rgt(nsamp, nvar, pphased, pploid, pallele));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_GeneticDiff_rgt", (DL_FUNC) &_GeneticDiff_rgt, 5},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_GeneticDiff(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

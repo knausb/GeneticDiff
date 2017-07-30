@@ -2,6 +2,7 @@
 #' @title GeneticDiff
 #' @name GeneticDiff
 #' @rdname GeneticDiff
+#' @aliases GeneticDiff
 #' 
 #' @description Genetic differentiation
 #' 
@@ -10,6 +11,6 @@
 #' Functionality is included to simulate data, measure within population diversity and among population differentiation.
 #' 
 #'
-#' @useDynLib GeneticDiff, .registration = TRUE
+#' @useDynLib GeneticDiff
 #' @importFrom Rcpp sourceCpp
 NULL

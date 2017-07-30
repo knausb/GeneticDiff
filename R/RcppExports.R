@@ -5,6 +5,7 @@
 #' @title rgt
 #' @description
 #' Generate a matrix of random genotypes.
+#' @name rgt
 #' 
 #' @param nsamp number of samples to simulate
 #' @param nvar number of variants to simulate
@@ -16,13 +17,10 @@
 #' @details
 #' Generate a matrix of random genotypes.
 #' 
-#' @examples
-NULL
-
 #' 
 #'
 #' @export
 rgt <- function(nsamp = 4L, nvar = 3L, pphased = as.numeric( c(0.5)), pploid = as.numeric( c(0,1)), pallele = as.numeric( c(0.5,0.5))) {
-    .Call('GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele)
+    .Call('_GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele)
 }
 

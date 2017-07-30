@@ -24,8 +24,3 @@ Generate a matrix of random genotypes.
 \details{
 Generate a matrix of random genotypes.
 }
-\examples{
-rgt()
-
-
-}

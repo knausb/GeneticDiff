@@ -1,18 +1,14 @@
 Package: GeneticDiff
 Type: Package
 Title: What the Package Does Using Title Case
-Version: 0.1.0.9000
-Date: 2017-07-28
-Author: Brian J. Knaus
-Authors@R: person(given="Brian", family="Knaus", middle="J.", email = "briank.lists@gmail.com",
-                  role = c("aut", "cre"))
-Maintainer: Brian J. Knaus <briank.lists@gmail.com>
-Description: Population genetics differentiation functions. Simulation of random genotypes, nucleotide diversity and differentiation.
+Version: 1.0
+Date: 2017-07-29
+Author: Your Name
+Maintainer: Your Name <your@email.com>
+Description: More details about what the package does. See
+        <http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
+        for details on how to write this part.
 License: GPL (>= 2)
-Depends: R (>= 3.4.1)
-URL: https://github.com/knausb/GeneticDiff
-BugReports: https://github.com/knausb/GeneticDiff/issues
-LazyData: true
+RoxygenNote: 6.0.1
 LinkingTo: Rcpp
 Imports: Rcpp
-RoxygenNote: 6.0.1

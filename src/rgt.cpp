@@ -36,14 +36,21 @@ std::string simGT(Rcpp::NumericVector pphased,
   // Create vector of alleles
   Rcpp::IntegerVector myAlleles(ploid + 1);
   
+  Rcpp::Rcout << "pallele is " << pallele(i);
+  for(i=0; i<pallele.size(); i++){
+    Rcpp::Rcout << ", " << pallele(i);
+  }
+  Rcpp::Rcout << "\n";
+  
   // Convert allele probabilities to thresholds
   for(i=1; i<pallele.size(); i++){
-    pallele(i) = pallele(i-1) + pallele(i);
+//    Rcpp::Rcout << "Adding " << pallele( i - 1 ) << " and " << pallele(i) << "\n";
+    pallele(i) = pallele( i - 1 ) + pallele( i );
   }
   
   Rcpp::Rcout << "Allelic thresholds " << pallele(0);
   for(i=1; i<pallele.size(); i++){
-    Rcpp::Rcout << ", " << i;
+    Rcpp::Rcout << ", " << pallele(i);
   }
   Rcpp::Rcout << "\n";
   
@@ -54,15 +61,15 @@ std::string simGT(Rcpp::NumericVector pphased,
     Rcpp::Rcout << "  Allele copy " << i << "\n";
     for(j=0; j<pallele.size(); j++){
       // Determine state of allele i
-      Rcpp::Rcout << "    Allelic state " << j << "\n";
+      Rcpp::Rcout << "    Allelic state " << j << ", pallele: " << pallele(j) << "\n";
       if( myRand(0) > pallele(j) ){
         myAlleles(i) = j;
-        Rcpp::Rcout << "      Changed allele" << "\n";
+        Rcpp::Rcout << "      Changed allele: " << j << " to " << myAlleles(i) << "\n";
       }
     }
     Rcpp::Rcout << "    Allele called is " << myAlleles(i) << "\n";
   }
-  Rcpp::Rcout << "\n";
+
   
   // Concatenate alleles into a string
   std::stringstream sstm;
@@ -73,6 +80,8 @@ std::string simGT(Rcpp::NumericVector pphased,
   
   std::string myGT = sstm.str();
 //  std::string myGT = "0/1";
+  Rcpp::Rcout << "GT is: " << myGT << "\n";
+  Rcpp::Rcout << "\n";
   return(myGT);
 }
 
@@ -82,6 +91,7 @@ std::string simGT(Rcpp::NumericVector pphased,
 //' @title rgt
 //' @description
 //' Generate a matrix of random genotypes.
+//' @name rgt
 //' 
 //' @param nsamp number of samples to simulate
 //' @param nvar number of variants to simulate
@@ -93,8 +103,6 @@ std::string simGT(Rcpp::NumericVector pphased,
 //' @details
 //' Generate a matrix of random genotypes.
 //' 
-//' @examples
-// ' rgt()
 //' 
 //'
 //' @export
