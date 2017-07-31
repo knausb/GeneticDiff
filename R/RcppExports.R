@@ -25,6 +25,6 @@
 #'
 #' @export
 rgt <- function(nsamp = 4L, nvar = 3L, pphased = as.numeric( c(0.5)), pploid = as.numeric( c(0,1)), pallele = as.numeric( c(0.5,0.5))) {
-    .Call('_GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele)
+    .Call('GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele)
 }
 
