@@ -13,14 +13,23 @@ std::string simGT(Rcpp::NumericVector pphased,
   int ploid = 0;
   Rcpp::NumericVector myRand = Rcpp::runif(1);
   
-//  int verbose = 0; // FALSE
 //
-int verbose = 1; // TRUE
+int verbose = 0; // FALSE
+//int verbose = 1; // TRUE
+  
+  if(verbose == 1){
+    Rcpp::Rcout << "pploid: " << pploid(0);
+    for(i=1; i<pploid.size(); i++){
+      Rcpp::Rcout << ", " << pploid(i);
+    }
+    Rcpp::Rcout << "\n";
+  }
+
   
   // Convert ploidy probabilities to thresholds
-  Rcpp::NumericVector ploid_threshold(pploid.size());
-  for(i=1; i<pploid.size(); i++){
-    ploid_threshold(i) = ploid_threshold(i-1) + pploid(i);
+  Rcpp::NumericVector ploid_threshold(pploid.size() + 1);
+  for(i=1; i<ploid_threshold.size(); i++){
+    ploid_threshold(i) = ploid_threshold(i-1) + pploid(i - 1);
   }
   
   if(verbose == 1){
@@ -32,8 +41,8 @@ int verbose = 1; // TRUE
   }
   
   // Determine ploid
-  for(i=0; i<ploid_threshold.size(); i++){
-    if(myRand(0) < ploid_threshold(i)){
+  for(i=0; i<ploid_threshold.size() - 1; i++){
+    if(myRand(0) > ploid_threshold(i) & myRand(0) <= ploid_threshold(i + 1) ){
       ploid = i;
     }
   }
@@ -61,10 +70,10 @@ int verbose = 1; // TRUE
   }
 
   // Convert allele probabilities to thresholds
-  Rcpp::NumericVector allele_threshold(pallele.size());  
-  for(i=1; i<pallele.size(); i++){
-//    Rcpp::Rcout << "Adding " << pallele( i - 1 ) << " and " << pallele(i) << "\n";
-    allele_threshold(i) = allele_threshold( i - 1 ) + pallele( i );
+  Rcpp::NumericVector allele_threshold(pallele.size() + 1);  
+  for(i=1; i<allele_threshold.size(); i++){
+//    Rcpp::Rcout << i << " Adding " << allele_threshold( i - 1 ) << " and " << pallele( i - 1 ) << "\n";
+    allele_threshold(i) = allele_threshold( i - 1 ) + pallele( i - 1 );
   }
 
   if(verbose == 1){
@@ -76,21 +85,21 @@ int verbose = 1; // TRUE
   }
 
   // Assign allelic state
-  if(verbose == 1){
-    Rcpp::Rcout << "Random number is: " << myRand(0) << "\n";
-  }
   for(i=0; i<=ploid; i++){
     // Allele copy i
     myRand = Rcpp::runif(1);
     if(verbose == 1){
+      Rcpp::Rcout << "Random number is: " << myRand(0) << "\n";
+    }
+    if(verbose == 1){
       Rcpp::Rcout << "  Allele copy " << i << "\n";
     }
-    for(j=0; j<pallele.size(); j++){
+    for(j=0; j<allele_threshold.size() - 1; j++){
       // Determine state of allele i
       if(verbose == 1){
-        Rcpp::Rcout << "    Allelic state " << j << ", pallele: " << pallele(j) << "\n";
+        Rcpp::Rcout << "    Allelic state " << j << ", allele_threshold: " << allele_threshold(j) << " - " << allele_threshold(j + 1) << "\n";
       }
-      if( myRand(0) > pallele(j) ){
+      if( myRand(0) > allele_threshold(j) & myRand(0) <= allele_threshold(j + 1) ){
         myAlleles(i) = j;
         if(verbose == 1){
           Rcpp::Rcout << "      Changed allele: " << j << " to " << myAlleles(i) << "\n";

@@ -47,8 +47,14 @@ test_that("rgt, all 0", {
 
 test_that("rgt, all 1", {
   myGT <- rgt(pploid = c(1), pallele=c(0,1))
-#  expect_equal(sum(myGT == 1), nrow(myGT) * ncol(myGT) )
+  expect_equal(sum(myGT == 1), nrow(myGT) * ncol(myGT) )
 })
+
+test_that("rgt, all 2", {
+  myGT <- rgt(pploid = c(1), pallele=c(0,0,1))
+  expect_equal(sum(myGT == 2), nrow(myGT) * ncol(myGT) )
+})
+
 
 ##### ##### ##### ##### #####
 # EOF.
