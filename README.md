@@ -7,7 +7,7 @@ Genetic differentiation
 
 ## Main functionality
 
-`rgt()` - Generate random genotypes
+`rgt()` - Generate a matrix of random genotypes. Genotypes can be of mixed ploidy, mixed phasing, and an arbitrary number of alleles.
 
 
 ## To do
@@ -16,3 +16,10 @@ Per site within population summaries
 
 pi   
 HWE   
+
+Among population differentiation
+
+thetawc   
+AMOVA   
+
+
