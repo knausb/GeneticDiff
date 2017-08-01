@@ -13,8 +13,9 @@ std::string simGT(Rcpp::NumericVector pphased,
   int ploid = 0;
   Rcpp::NumericVector myRand = Rcpp::runif(1);
   
-  int verbose = 0; // FALSE
-//  int verbose = 1; // TRUE
+//  int verbose = 0; // FALSE
+//
+int verbose = 1; // TRUE
   
   // Convert ploidy probabilities to thresholds
   Rcpp::NumericVector ploid_threshold(pploid.size());
