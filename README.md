@@ -4,6 +4,8 @@ Genetic differentiation
 
 [![Travis-CI Build Status](https://travis-ci.org/knausb/GeneticDiff.svg?branch=master)](https://travis-ci.org/knausb/GeneticDiff)
 
+[![Coverage Status](https://img.shields.io/codecov/c/github/knausb/GeneticDiff/master.svg)](https://codecov.io/github/knausb/GeneticDiff?branch=master)
+
 
 ## Main functionality
 
