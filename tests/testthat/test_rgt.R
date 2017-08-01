@@ -1,6 +1,7 @@
 
 library(GeneticDiff)
-#library(testthat)
+#
+library(testthat)
 context("rgt")
 
 ##### ##### ##### ##### #####

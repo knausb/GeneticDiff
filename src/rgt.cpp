@@ -167,26 +167,51 @@ Rcpp::CharacterMatrix rgt(
 
   int i = 0;
   int j = 0;
+  Rcpp::NumericVector mySum(1);
   
-  // Check pploid sum < 1.
-  int mySum = 0;
+  // Check 0 <= pphased <= 1.
+  if( pphased[0] < 0 | pphased[0] > 1 ){
+    Rcpp::Rcerr << "pphased: " << pphased[0] << "\n";
+    Rcpp::Rcerr << "pphased must be between 0 and 1.\n";
+    return( Rcpp::CharacterMatrix(1) );
+  }
+  
+  
+  // Check pploid sum == 1.
+  mySum[0] = 0;
   for(i=0; i<pploid.size(); i++){
-    mySum = mySum + pploid(i);
+    mySum[0] = mySum[0] + pploid(i);
   }
-  if(mySum > 1){
-    Rcpp::Rcerr << "pploid sum is greater than 1\n";
+
+  if( mySum[0] < 0.999 | mySum[0] > 1.001 ){
+    Rcpp::Rcerr << "pploid deos not sum to one.\n";
+    Rcpp::Rcerr << pploid(0);
+    for(i=1;i<pploid.size();i++){
+      Rcpp::Rcerr << ", " << pploid(i);
+    }
+    Rcpp::Rcerr << " == " << mySum[0];
+    Rcpp::Rcerr << "\n";
     return( Rcpp::CharacterMatrix(1) );
   }
+
   
-  // Check pallele sum < 1.
-  mySum = 0;
+  // Check pallele sum == 1.
+  mySum[0] = 0;
   for(i=0; i<pallele.size(); i++){
-    mySum = mySum + pallele(i);
+    mySum[0] = mySum[0] + pallele(i);
   }
-  if(mySum > 1){
-    Rcpp::Rcerr << "pallele sum is greater than 1\n";
+
+  if( mySum[0] < 0.999 | mySum[0] > 1.001 ){
+    Rcpp::Rcerr << "pallele deos not sum to one.\n";
+    Rcpp::Rcerr << pallele(0);
+    for(i=1;i<pallele.size();i++){
+      Rcpp::Rcerr << ", " << pallele(i);
+    }
+    Rcpp::Rcerr << " == " << mySum[0];
+    Rcpp::Rcerr << "\n";
     return( Rcpp::CharacterMatrix(1) );
   }
+
   
   // Loop through matrix
   for(i=0; i<nsamp;i++){
