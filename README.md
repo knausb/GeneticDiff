@@ -5,10 +5,12 @@ Genetic differentiation
 [![Travis-CI Build Status](https://travis-ci.org/knausb/GeneticDiff.svg?branch=master)](https://travis-ci.org/knausb/GeneticDiff)
 
 
-Generate random genotypes: `rgt()`
+## Main functionality
+
+`rgt()` - Generate random genotypes
 
 
-To do:
+## To do
 
 Per site within population summaries
 
