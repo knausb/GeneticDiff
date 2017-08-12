@@ -19,7 +19,7 @@ rgt(nsamp = 4L, nvar = 3L, pphased = as.numeric(c(0.5)),
 \item{pallele}{probability of each allele}
 }
 \value{
-A matrix with samples in columns and variants in rows.
+A matrix with variants (loci) in rows and samples in columns.
 }
 \description{
 Generate a matrix of random genotypes.
@@ -63,4 +63,10 @@ The code \code{rgt(pallele = c(0,1))} will produce genotypes where the 0th allel
 The code \code{rgt(pallele = c(0,0,1))} will produce genotypes where the 0th allele (0) will occur with a probability of 0, the 1st allele will occur with a probability of 0, and the 2nd allele will occur with a probability of 1.
 The code \code{rgt(pallele = c(0.2,0.7,0.1))} will produce genotypes where the 0th allele (0) will occur with a probability of 0.2, the 1st allele will occur with a probability of 0.7, and the 2nd allele will occur with a probability of 0.1.
 The values in this vector are of arbitrary length but should sum to one.
+}
+\examples{
+
+rgt()
+
+
 }

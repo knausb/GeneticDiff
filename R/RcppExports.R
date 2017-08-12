@@ -56,7 +56,12 @@
 #' 
 #' 
 #' @return
-#' A matrix with samples in columns and variants in rows.
+#' A matrix with variants (loci) in rows and samples in columns.
+#' 
+#' 
+#' @examples
+#' 
+#' rgt()
 #' 
 #'
 #' @export
