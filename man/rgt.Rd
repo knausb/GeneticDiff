@@ -65,7 +65,6 @@ The code \code{rgt(pallele = c(0.2,0.7,0.1))} will produce genotypes where the 0
 The values in this vector are of arbitrary length but should sum to one.
 }
 \examples{
-
 rgt()
 
 

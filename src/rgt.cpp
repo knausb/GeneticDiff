@@ -188,7 +188,6 @@ int verbose = 0; // FALSE
 //' 
 //' 
 //' @examples
-//' 
 //' rgt()
 //' 
 //'
