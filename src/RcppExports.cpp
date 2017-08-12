@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// genotype_split
+Rcpp::StringVector genotype_split(std::string myGT);
+RcppExport SEXP _GeneticDiff_genotype_split(SEXP myGTSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type myGT(myGTSEXP);
+    rcpp_result_gen = Rcpp::wrap(genotype_split(myGT));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rgt
 Rcpp::CharacterMatrix rgt(int nsamp, int nvar, Rcpp::NumericVector pphased, Rcpp::NumericVector pploid, Rcpp::NumericVector pallele);
 RcppExport SEXP _GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP) {
@@ -22,6 +33,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_GeneticDiff_genotype_split", (DL_FUNC) &_GeneticDiff_genotype_split, 1},
     {"_GeneticDiff_rgt", (DL_FUNC) &_GeneticDiff_rgt, 5},
     {NULL, NULL, 0}
 };
