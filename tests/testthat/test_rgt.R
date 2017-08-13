@@ -11,6 +11,14 @@ test_that("rgt returns a matrix", {
   expect_is(myGT, "matrix")
 })
 
+test_that("rgt verbose output", {
+  sink("/dev/null")
+  myGT <- rgt(verbose = 1)
+  sink()
+  expect_is(myGT, "matrix")
+})
+
+
 test_that("rgt, all unphased", {
   myGT <- rgt(pphased = 0)
   expect_equal( length(grep("/", myGT)), nrow(myGT) * ncol(myGT) )

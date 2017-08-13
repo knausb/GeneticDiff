@@ -6,15 +6,15 @@
 
 std::string simGT(Rcpp::NumericVector pphased,
                   Rcpp::NumericVector pploid,
-                  Rcpp::NumericVector pallele
+                  Rcpp::NumericVector pallele,
+                  int verbose = 0
 ){
   int i = 0;
   int j = 0;
   int ploid = 0;
   Rcpp::NumericVector myRand = Rcpp::runif(1);
   
-//
-int verbose = 0; // FALSE
+//=int verbose = 0; // FALSE
 //int verbose = 1; // TRUE
   
   if(verbose == 1){
@@ -140,6 +140,7 @@ int verbose = 0; // FALSE
 //' @param pphased probability each genotype will be phased
 //' @param pploid probability each genotype will be a ploidy level
 //' @param pallele probability of each allele
+//' @param verbose should verbose output be produced (1) or not (0)
 //' 
 //' 
 //' @details
@@ -201,7 +202,8 @@ Rcpp::CharacterMatrix rgt(
     int nvar = 3,
     Rcpp::NumericVector pphased = Rcpp::NumericVector::create(0.5),
     Rcpp::NumericVector pploid = Rcpp::NumericVector::create(0,1),
-    Rcpp::NumericVector pallele = Rcpp::NumericVector::create(0.5,0.5)
+    Rcpp::NumericVector pallele = Rcpp::NumericVector::create(0.5,0.5),
+    int verbose = 0
 ){
   // Initialize return matrix.
   Rcpp::CharacterMatrix gtMat(nvar, nsamp);
@@ -268,7 +270,7 @@ Rcpp::CharacterMatrix rgt(
       myRows(j) = sstm.str();
       
       // Simulate a single genotype
-      gtMat(j,i) = simGT(pphased, pploid, pallele);
+      gtMat(j,i) = simGT(pphased, pploid, pallele, verbose);
     }
   }
   

@@ -34,6 +34,7 @@ genotype_split <- function(myGT) {
 #' @param pphased probability each genotype will be phased
 #' @param pploid probability each genotype will be a ploidy level
 #' @param pallele probability of each allele
+#' @param verbose should verbose output be produced (1) or not (0)
 #' 
 #' 
 #' @details
@@ -89,7 +90,7 @@ genotype_split <- function(myGT) {
 #' 
 #'
 #' @export
-rgt <- function(nsamp = 4L, nvar = 3L, pphased = as.numeric( c(0.5)), pploid = as.numeric( c(0,1)), pallele = as.numeric( c(0.5,0.5))) {
-    .Call('_GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele)
+rgt <- function(nsamp = 4L, nvar = 3L, pphased = as.numeric( c(0.5)), pploid = as.numeric( c(0,1)), pallele = as.numeric( c(0.5,0.5)), verbose = 0L) {
+    .Call('_GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele, verbose)
 }
 

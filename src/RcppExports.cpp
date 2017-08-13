@@ -17,8 +17,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rgt
-Rcpp::CharacterMatrix rgt(int nsamp, int nvar, Rcpp::NumericVector pphased, Rcpp::NumericVector pploid, Rcpp::NumericVector pallele);
-RcppExport SEXP _GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP) {
+Rcpp::CharacterMatrix rgt(int nsamp, int nvar, Rcpp::NumericVector pphased, Rcpp::NumericVector pploid, Rcpp::NumericVector pallele, int verbose);
+RcppExport SEXP _GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -27,14 +27,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type pphased(pphasedSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type pploid(pploidSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type pallele(palleleSEXP);
-    rcpp_result_gen = Rcpp::wrap(rgt(nsamp, nvar, pphased, pploid, pallele));
+    Rcpp::traits::input_parameter< int >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(rgt(nsamp, nvar, pphased, pploid, pallele, verbose));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GeneticDiff_genotype_split", (DL_FUNC) &_GeneticDiff_genotype_split, 1},
-    {"_GeneticDiff_rgt", (DL_FUNC) &_GeneticDiff_rgt, 5},
+    {"_GeneticDiff_rgt", (DL_FUNC) &_GeneticDiff_rgt, 6},
     {NULL, NULL, 0}
 };
 

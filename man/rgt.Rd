@@ -5,7 +5,8 @@
 \title{rgt - random genotypes}
 \usage{
 rgt(nsamp = 4L, nvar = 3L, pphased = as.numeric(c(0.5)),
-  pploid = as.numeric(c(0, 1)), pallele = as.numeric(c(0.5, 0.5)))
+  pploid = as.numeric(c(0, 1)), pallele = as.numeric(c(0.5, 0.5)),
+  verbose = 0L)
 }
 \arguments{
 \item{nsamp}{number of samples (columns) to simulate}
@@ -17,6 +18,8 @@ rgt(nsamp = 4L, nvar = 3L, pphased = as.numeric(c(0.5)),
 \item{pploid}{probability each genotype will be a ploidy level}
 
 \item{pallele}{probability of each allele}
+
+\item{verbose}{should verbose output be produced (1) or not (0)}
 }
 \value{
 A matrix with variants (loci) in rows and samples in columns.
