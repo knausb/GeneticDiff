@@ -15,7 +15,7 @@ rDNA(length = 100, prob = c(0.25, 0.25, 0.25, 0.25))
 A matrix of nucleotides consisting of one row (sample) that should be compatible with \code{ape::as.DNAbin()}.
 }
 \description{
-generate random DNA sequences
+Generate random DNA sequences
 }
 \details{
 Uses the function \code{base::sample()} to generate random sequences of nucleotides.
@@ -29,6 +29,6 @@ ape::as.DNAbin(myDNA)
 
 }
 \seealso{
-\code{base::sample()}
+\code{base::sample()}, 
 \code{ape::as.DNAbin()}
 }
