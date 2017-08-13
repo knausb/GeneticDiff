@@ -15,3 +15,4 @@
 #' @useDynLib GeneticDiff
 #' @importFrom Rcpp sourceCpp
 NULL
+
