@@ -1,16 +1,22 @@
 Package: GeneticDiff
 Type: Package
-Title: What the Package Does Using Title Case
-Version: 1.0
+Title: Genetic differentiation and diversity
+Version: 0.1.0.9000
 Date: 2017-07-29
-Author: Your Name
-Maintainer: Your Name <your@email.com>
+Author: Brian J. Knaus
+Maintainer: Brian J. Knaus <briank.lists@gmail.com>
 Description: More details about what the package does. See
         <http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>
         for details on how to write this part.
 License: GPL (>= 2)
 RoxygenNote: 6.0.1
-LinkingTo: Rcpp
-Imports: Rcpp
-Suggests: testthat,
-    covr
+Depends:
+    R (>= 3.4.1)
+URL: https://github.com/knausb/GeneticDiff
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
+Suggests: 
+    covr,
+    testthat
