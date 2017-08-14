@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// count_alleles
+Rcpp::DataFrame count_alleles(Rcpp::StringMatrix GT);
+RcppExport SEXP _GeneticDiff_count_alleles(SEXP GTSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::StringMatrix >::type GT(GTSEXP);
+    rcpp_result_gen = Rcpp::wrap(count_alleles(GT));
+    return rcpp_result_gen;
+END_RCPP
+}
 // genotype_split
 Rcpp::StringVector genotype_split(std::string myGT);
 RcppExport SEXP _GeneticDiff_genotype_split(SEXP myGTSEXP) {
@@ -34,6 +45,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_GeneticDiff_count_alleles", (DL_FUNC) &_GeneticDiff_count_alleles, 1},
     {"_GeneticDiff_genotype_split", (DL_FUNC) &_GeneticDiff_genotype_split, 1},
     {"_GeneticDiff_rgt", (DL_FUNC) &_GeneticDiff_rgt, 6},
     {NULL, NULL, 0}
