@@ -22,7 +22,7 @@
 #'
 #' @export
 count_alleles <- function(GT) {
-    .Call('GeneticDiff_count_alleles', PACKAGE = 'GeneticDiff', GT)
+    .Call('_GeneticDiff_count_alleles', PACKAGE = 'GeneticDiff', GT)
 }
 
 #' @title genotype_split - split a genotype into alleles
@@ -44,7 +44,7 @@ count_alleles <- function(GT) {
 #' 
 #' @export
 genotype_split <- function(myGT) {
-    .Call('GeneticDiff_genotype_split', PACKAGE = 'GeneticDiff', myGT)
+    .Call('_GeneticDiff_genotype_split', PACKAGE = 'GeneticDiff', myGT)
 }
 
 #'
@@ -115,6 +115,6 @@ genotype_split <- function(myGT) {
 #'
 #' @export
 rgt <- function(nsamp = 4L, nvar = 3L, pphased = as.numeric( c(0.5)), pploid = as.numeric( c(0,1)), pallele = as.numeric( c(0.5,0.5)), verbose = 0L) {
-    .Call('GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele, verbose)
+    .Call('_GeneticDiff_rgt', PACKAGE = 'GeneticDiff', nsamp, nvar, pphased, pploid, pallele, verbose)
 }
 

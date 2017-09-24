@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // count_alleles
 Rcpp::DataFrame count_alleles(Rcpp::StringMatrix GT);
-RcppExport SEXP GeneticDiff_count_alleles(SEXP GTSEXP) {
+RcppExport SEXP _GeneticDiff_count_alleles(SEXP GTSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // genotype_split
 Rcpp::StringVector genotype_split(std::string myGT);
-RcppExport SEXP GeneticDiff_genotype_split(SEXP myGTSEXP) {
+RcppExport SEXP _GeneticDiff_genotype_split(SEXP myGTSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -29,7 +29,7 @@ END_RCPP
 }
 // rgt
 Rcpp::CharacterMatrix rgt(int nsamp, int nvar, Rcpp::NumericVector pphased, Rcpp::NumericVector pploid, Rcpp::NumericVector pallele, int verbose);
-RcppExport SEXP GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _GeneticDiff_rgt(SEXP nsampSEXP, SEXP nvarSEXP, SEXP pphasedSEXP, SEXP pploidSEXP, SEXP palleleSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -45,9 +45,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"GeneticDiff_count_alleles", (DL_FUNC) &GeneticDiff_count_alleles, 1},
-    {"GeneticDiff_genotype_split", (DL_FUNC) &GeneticDiff_genotype_split, 1},
-    {"GeneticDiff_rgt", (DL_FUNC) &GeneticDiff_rgt, 6},
+    {"_GeneticDiff_count_alleles", (DL_FUNC) &_GeneticDiff_count_alleles, 1},
+    {"_GeneticDiff_genotype_split", (DL_FUNC) &_GeneticDiff_genotype_split, 1},
+    {"_GeneticDiff_rgt", (DL_FUNC) &_GeneticDiff_rgt, 6},
     {NULL, NULL, 0}
 };
 
